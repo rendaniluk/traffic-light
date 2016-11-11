@@ -22,13 +22,15 @@ function go(){
   switchOn('.go');
 }
 
+function caution(){
+  switchOn('.caution');
+}
+
 function stop(){
   switchOn('.stop');
 }
 
-function caution(){
-  switchOn('.caution');
-}
+
 
 function captureTimeChange(cb){
   var timeLeft = document.querySelector("#timeLeft");
@@ -38,30 +40,35 @@ function captureTimeChange(cb){
 
   timeLeft.addEventListener("keyup", function(evt){
       var num = Number(evt.target.value);
-      number.innerHTML = num;
+      if(num < 0 || num > 60){
+      	timeLeft.Value=0;
+      }
+  number.innerHTML = num;
     setTimeout(function(){
       cb(num);
-    }, 0)
+
+
+}, 500)
   });
 }
-
 
 
 /*
 var counter = 60;
 setInterval(function(){
   counter--;
-  if (counter > 40){
-    stop();
-  }
-  else if (counter < 40 && counter > 20){
+  if (counter >= 40){
     go();
   }
-  else{
-    carefull();
+  else if (counter < 40 && counter > 30){
+    caution();
   }
-  if (counter === 0){
+  else{
+    stop();
+  }
+  if (counter == 0){
     counter = 60;
   }
-}, 500);
-*/
+
+}, 500);*/
+showNumber(counter);

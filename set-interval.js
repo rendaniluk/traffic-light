@@ -1,4 +1,4 @@
-var counter = 0;
+var counter = 60;
 var number;
 
 function showNumber(num){
@@ -6,11 +6,15 @@ function showNumber(num){
         number = document.querySelector("#number");
     }
     number.innerHTML = counter;
+    captureTrafficLightChange(num);
 }
 
 function interval(){
-        counter++;
+        counter--;
         // write some code here
+        if (counter == -1) {
+          counter = 60;
+        }
 
         showNumber(counter);
 }
